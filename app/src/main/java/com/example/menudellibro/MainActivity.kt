@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.menudellibro.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         private val ID_BOTONRADIO_1 = Menu.FIRST + 1
         private val ID_BOTONRADIO_2 = Menu.FIRST + 2
         private val ID_BOTONRADIO_3 = Menu.FIRST + 3
+        private val elementoSubMenu = Menu.FIRST + 4
         private var cont = 0
     }
 
@@ -28,20 +30,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
-        menu?.add(Menu.NONE, ID_ELEMENTO_CHECKBOX, Menu.NONE, "CheckBox")
-            ?.setCheckable(true)
-        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_1, Menu.NONE, "Opción 1")
-        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_2, Menu.NONE, "Opción 2")
-        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_3, Menu.NONE, "Opción 3")
-            ?.setChecked(true)
-        menu?.setGroupCheckable(ID_GROUP_BR, true, true)
+        menuInflater.inflate(R.menu.menu_sub, menu)
+
+//        menu?.add(Menu.NONE, ID_ELEMENTO_CHECKBOX, Menu.NONE, "CheckBox")
+//            ?.setCheckable(true)
+//        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_1, Menu.NONE, "Opción 1")
+//        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_2, Menu.NONE, "Opción 2")
+//        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_3, Menu.NONE, "Opción 3")
+//            ?.setChecked(true)
+//        menu?.setGroupCheckable(ID_GROUP_BR, true, true)
+//        val sub = menu?.addSubMenu(0,0, Menu.NONE, "Otra pantalla")
+//        val elementoSubMenu = sub?.add(0,elementoSubMenu, Menu.NONE, "Elementos del SubMenu") //el elementoSubMenu es un identificador
         return true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         super.onPrepareOptionsMenu(menu)
+
         cont++
-        binding.tvContador.text.toString()
+        binding.tvContador.text = cont.toString()
         return true
     }
 
@@ -64,8 +71,15 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(binding.root, "Ha seleccionado elemento 3", Snackbar.LENGTH_SHORT).show()
                 return true
             }
+            elementoSubMenu ->{
+                Snackbar.make(binding.root, "Opcion selecionada", Snackbar.LENGTH_SHORT).show()
+                return true
+            }
         }
         return false
+    }
+    fun click(view: View){
+        Snackbar.make(view, "Ha selecionado esta opcíon", Snackbar.LENGTH_SHORT).show()
     }
 
 }

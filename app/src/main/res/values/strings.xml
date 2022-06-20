@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MenuDelLibro</string>
-    <string name="_0">0</string>
+    <string name="Contador">0</string>
+    <string name="Opcion">Opcíon 1</string>
+    <string name="Opcion2">Opcíon 2</string>
+    <string name="Opcion3">Opcíon 3</string>
+    <string name="OpcionMenu">opcion Menu</string>
+    <string name="OpcionSub">Opcion Sub</string>
 </resources>
